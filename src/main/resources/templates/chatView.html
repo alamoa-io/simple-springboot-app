@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>ChatGPT Interface</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+<h1>Chat</h1>
+
+<form th:action="@{/chat}" th:object="${chatMessage}" method="post">
+    <textarea rows="10" cols="50" readonly
+              th:text="'You: ' + (${chatMessage.userMessage} ?: '') + ${lineSeparator} + 'ChatGPT: ' + (${chatMessage.chatGPTResponse} ?: '')">
+    </textarea><br>
+    <input type="text" th:field="*{userMessage}" placeholder="メッセージを入力してください" required />
+    <button type="submit">送信</button>
+</form>
+
+</body>
+</html>
