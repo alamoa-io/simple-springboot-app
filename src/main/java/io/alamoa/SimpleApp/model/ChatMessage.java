@@ -1,17 +1,23 @@
-package io.alamoa.SimpleApp.service;
+package io.alamoa.SimpleApp.model;
 
-import io.alamoa.SimpleApp.logic.ChatLogic;
-import org.springframework.stereotype.Service;
-
-@Service
-public class ChatService {
-
-    private final ChatLogic chatLogic;
-
-    public ChatService(ChatLogic chatLogic) {
-        this.chatLogic = chatLogic;
+public class ChatMessage {
+    public String getUserMessage() {
+        return userMessage;
     }
-    public String generateResponse(String userMessage) {
-        return chatLogic.getChatResponse(userMessage);
+
+    public void setUserMessage(String userMessage) {
+        this.userMessage = userMessage;
     }
+
+    String userMessage;
+
+    public String getChatGPTResponse() {
+        return chatGPTResponse;
+    }
+
+    public void setChatGPTResponse(String chatGPTResponse) {
+        this.chatGPTResponse = chatGPTResponse;
+    }
+
+    String chatGPTResponse;
 }
