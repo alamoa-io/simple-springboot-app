@@ -1,23 +1,17 @@
-package io.alamoa.SimpleApp.model;
+package io.alamoa.SimpleApp.service;
 
-public class ChatMessage {
-    public String getUserMessage() {
-        return userMessage;
+import io.alamoa.SimpleApp.logic.ChatLogic;
+import org.springframework.stereotype.Service;
+
+@Service
+public class ChatService {
+
+    private final ChatLogic chatLogic;
+
+    public ChatService(ChatLogic chatLogic) {
+        this.chatLogic = chatLogic;
     }
-
-    public void setUserMessage(String userMessage) {
-        this.userMessage = userMessage;
+    public String generateResponse(String userMessage) {
+        return chatLogic.getChatResponse(userMessage);
     }
-
-    String userMessage;
-
-    public String getChatGPTResponse() {
-        return chatGPTResponse;
-    }
-
-    public void setChatGPTResponse(String chatGPTResponse) {
-        this.chatGPTResponse = chatGPTResponse;
-    }
-
-    String chatGPTResponse;
 }

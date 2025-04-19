@@ -29,9 +29,10 @@ public class ChatController {
     @PostMapping("/chat")
     public String handleChat(@ModelAttribute ChatMessage chatMessage, Model model) {
         String userMessage = chatMessage.getUserMessage();
-        String chatGPTResponse = "これはChatGPTの応答です: " + userMessage;
-        chatMessage.setChatGPTResponse(chatGPTResponse);
+        String response = chatService.generateResponse(userMessage);
+        chatMessage.setChatGPTResponse(response);
 
+        model.addAttribute("userMessage", "");
         model.addAttribute("chatMessage", chatMessage);
         model.addAttribute("lineSeparator", System.lineSeparator());
         return "chatView";
