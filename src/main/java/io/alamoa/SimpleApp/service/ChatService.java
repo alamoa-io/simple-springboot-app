@@ -11,6 +11,7 @@ public class ChatService {
     public ChatService(ChatLogic chatLogic) {
         this.chatLogic = chatLogic;
     }
+
     public String generateResponse(String userMessage) {
         return chatLogic.getChatResponse(userMessage);
     }

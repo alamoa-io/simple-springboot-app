@@ -1,34 +1,20 @@
 package io.alamoa.SimpleApp.logic;
 
 import com.openai.client.OpenAIClient;
-import com.openai.models.ChatModel;
 import com.openai.models.audio.AudioModel;
 import com.openai.models.audio.transcriptions.Transcription;
 import com.openai.models.audio.transcriptions.TranscriptionCreateParams;
-import com.openai.models.chat.completions.ChatCompletionCreateParams;
 import org.springframework.stereotype.Component;
 
 import java.nio.file.Path;
-import java.util.stream.Collectors;
 
 @Component
-public class ChatLogic {
+public class AudioLogic {
+
     private final OpenAIClient client;
 
-    public ChatLogic(OpenAIClient client) {
+    public AudioLogic(OpenAIClient client) {
         this.client = client;
-    }
-
-    public String getChatResponse(String userMessage) {
-
-        ChatCompletionCreateParams createParams = ChatCompletionCreateParams.builder()
-                .addUserMessage(userMessage)
-                .model(ChatModel.GPT_4O_MINI)
-                .build();
-
-        return client.chat().completions().create(createParams).choices().stream()
-                .flatMap(choice -> choice.message().content().stream())
-                .collect(Collectors.joining("\n"));
     }
 
     public String getConvertedAudioText(Path path) {
