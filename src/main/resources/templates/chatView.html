@@ -11,7 +11,8 @@
     <textarea rows="10" cols="50" readonly
               th:text="'You: ' + (${chatMessage.userMessage} ?: '') + ${lineSeparator} + 'ChatGPT: ' + (${chatMessage.chatGPTResponse} ?: '')">
     </textarea><br>
-    <input id="userMessageInput" type="text" th:field="*{userMessage}" placeholder="メッセージを入力してください" required />
+    <input id="userMessageInput" type="text" th:field="*{userMessage}" placeholder="メッセージを入力してください"
+           required/>
     <button type="submit">送信</button>
 </form>
 

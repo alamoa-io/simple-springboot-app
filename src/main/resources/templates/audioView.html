@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Audio Convert</title>
+</head>
+<body>
+<h1>Audio Convert</h1>
+
+
+<!-- ファイルアップロードフォーム -->
+<form th:action="@{/audio}" method="post" enctype="multipart/form-data">
+    <input type="file" name="file" required>
+    <button id="selectFileButton" type="submit">Convert</button>
+</form>
+Ò
+<!-- 音声変換後のレスポンス表示エリア -->
+<textarea id="audioResponse" readonly
+          placeholder="音声ファイルの内容がここに表示されます">[[${responseText}]]</textarea>
+
+
+</body>
+</html>
