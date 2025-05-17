@@ -11,7 +11,8 @@
     <textarea rows="10" cols="50" readonly
               th:text="'You: ' + (${chatMessage.userMessage} ?: '') + ${lineSeparator} + 'ChatGPT: ' + (${chatMessage.chatGPTResponse} ?: '')">
     </textarea><br>
-    <input id="userMessageInput" type="text" th:field="*{userMessage}" placeholder="メッセージを入力してください" required />
+    <input id="userMessageInput" type="text" th:field="*{userMessage}" placeholder="メッセージを入力してください"
+           required/>
     <button type="submit">送信</button>
 </form>
 
@@ -27,25 +28,19 @@
     <tbody>
     <tr th:each="chatHistory : ${chatHistories}">
         <form th:action="@{/chat/updateMemo}" method="post">
-            <input type="hidden" name="id" th:value="${chatHistory.id}" />
+            <input type="hidden" name="id" th:value="${chatHistory.id}"/>
             <td th:text="${chatHistory.question}">質問</td>
             <td th:text="${chatHistory.answer}">回答</td>
             <td>
-                <input type="text" name="memo" th:value="${chatHistory.memo}" />
+                <input type="text" name="memo" th:value="${chatHistory.memo}"/>
             </td>
             <td>
                 <button type="submit">更新</button>
+            </td>
         </form>
-
-        <form th:action="@{/chat/delete}" method="post" style="display:inline;">
-            <input type="hidden" name="id" th:value="${chatHistory.id}" />
-            <button type="submit" onclick="return confirm('削除してもよろしいですか？');">削除</button>
-        </form>
-        </td>
     </tr>
     </tbody>
 </table>
-
 
 
 <script>
