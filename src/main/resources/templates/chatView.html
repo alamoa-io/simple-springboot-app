@@ -15,6 +15,39 @@
     <button type="submit">送信</button>
 </form>
 
+<table border="1">
+    <thead>
+    <tr>
+        <th>質問</th>
+        <th>回答</th>
+        <th>メモ</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="chatHistory : ${chatHistories}">
+        <form th:action="@{/chat/updateMemo}" method="post">
+            <input type="hidden" name="id" th:value="${chatHistory.id}" />
+            <td th:text="${chatHistory.question}">質問</td>
+            <td th:text="${chatHistory.answer}">回答</td>
+            <td>
+                <input type="text" name="memo" th:value="${chatHistory.memo}" />
+            </td>
+            <td>
+                <button type="submit">更新</button>
+        </form>
+
+        <form th:action="@{/chat/delete}" method="post" style="display:inline;">
+            <input type="hidden" name="id" th:value="${chatHistory.id}" />
+            <button type="submit" onclick="return confirm('削除してもよろしいですか？');">削除</button>
+        </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+
+
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const input = document.getElementById('userMessageInput');
